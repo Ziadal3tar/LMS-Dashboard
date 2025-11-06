@@ -1,0 +1,55 @@
+.card-soft {
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.progress {
+  background-color: #e5e7eb;
+  border-radius: 8px;
+}
+
+.progress-bar {
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .card-soft {
+    padding: 1.2rem;
+  }
+}
+.card-soft {
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.activity-item {
+  font-size: 15px;
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.activity-item i {
+  font-size: 1.1rem;
+}
+
+select.form-select-sm {
+  background-color: #f9fafb;
+  border-radius: 8px;
+  border-color: #e5e7eb;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .activity-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  select.form-select-sm {
+    width: 100% !important;
+  }
+}

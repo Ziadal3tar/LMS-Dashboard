@@ -1,0 +1,75 @@
+<div class="container-fluid">
+  <a routerLink="/students" class="btn btn-link text-decoration-none mb-3">
+    <i class="bi bi-arrow-left"></i> Back to Students
+  </a>
+
+  <div class="card card-soft p-4 mb-4">
+    <div class="d-flex flex-wrap align-items-center justify-content-between">
+      <div>
+        <h4 class="fw-bold">{{ student.name }}</h4>
+        <p class="mb-1 text-muted">{{ student.email }}</p>
+        <span class="badge"
+              [class.bg-success]="student.status === 'Active'"
+              [class.bg-danger]="student.status === 'Suspended'">
+          {{ student.status }}
+        </span>
+      </div>
+      <div>
+        <p class="mb-0 text-muted small">Joined: {{ student.joined }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Courses List -->
+  <div class="card card-soft p-3">
+    <h5 class="fw-bold mb-3">Enrolled Courses</h5>
+
+    <div *ngFor="let course of student.courses" class="border rounded-3 p-3 mb-3">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <span class="fw-semibold">{{ course.title }}</span>
+        <span class="text-muted small">{{ course.progress }}% complete</span>
+      </div>
+      <div class="progress" style="height: 8px;">
+        <div class="progress-bar bg-primary" [style.width.%]="course.progress"></div>
+      </div>
+      <div class="mt-2 text-muted small">
+        Grade: <span class="fw-semibold text-dark">{{ course.grade }}%</span>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- Activity Log -->
+<div class="card card-soft p-3 mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h5 class="fw-bold m-0">Activity Log</h5>
+
+    <!-- ✅ فلتر -->
+    <select class="form-select form-select-sm" [(ngModel)]="activityFilter" style="width: 180px;">
+      <option value="All">All Activities</option>
+      <option value="Lesson">Lessons</option>
+      <option value="Quiz">Quizzes</option>
+      <option value="Course">Courses</option>
+    </select>
+  </div>
+
+  <div *ngIf="filteredActivity?.length > 0; else noActivity">
+    <div *ngFor="let log of filteredActivity" class="activity-item border-bottom py-2 d-flex justify-content-between">
+      <div class="d-flex align-items-center">
+        <i *ngIf="log.type === 'lesson'" class="bi bi-play-btn text-primary me-2"></i>
+        <i *ngIf="log.type === 'quiz'" class="bi bi-patch-question text-warning me-2"></i>
+        <i *ngIf="log.type === 'course'" class="bi bi-journal-bookmark text-success me-2"></i>
+        <span>{{ log.action }}</span>
+      </div>
+      <small class="text-muted">{{ log.date }}</small>
+    </div>
+  </div>
+
+  <ng-template #noActivity>
+    <p class="text-muted text-center mb-0 py-3">No activities found for this filter.</p>
+  </ng-template>
+</div>
+
+
+</div>

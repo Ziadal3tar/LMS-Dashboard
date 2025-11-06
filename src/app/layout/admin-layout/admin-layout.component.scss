@@ -1,0 +1,138 @@
+.app {
+  background: var(--bg);
+  min-height: 100vh;
+}
+
+/* ========== SIDEBAR ========== */
+.sidebar {
+  width: 300px;
+  background: var(--sidebar);
+  position: fixed; /* ✅ يجعلها ثابتة */
+  top: 0;
+  left: 0;
+  height: 100vh; /* تملأ الشاشة بالكامل */
+  overflow-y: auto; /* لو القائمة طويلة */
+  z-index: 100; /* فوق المحتوى */
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+/* المحتوى الرئيسي */
+main {
+  margin-left: 300px; /* يترك مساحة للـ sidebar */
+  flex-grow: 1;
+}
+
+/* روابط القائمة */
+.nav-link {
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.6rem;
+  transition: 0.3s;
+  &.active,
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff !important;
+  }
+}
+
+/* ========== TOPBAR ========== */
+/* ========== TOPBAR ========== */
+.topbar {
+  z-index: 50;
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.topbar .breadcrumb {
+  background: transparent;
+  font-size: 14px;
+}
+
+.dropdown-menu {
+  border-radius: 12px;
+  border: none;
+}
+
+.dropdown-item {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-item i {
+  font-size: 1rem;
+}
+
+/* ========== DARK MODE ========== */
+body.dark-mode {
+  background-color: #0f172a !important;
+  color: #f9fafb !important;
+}
+
+body.dark-mode .topbar {
+  background-color: #1e293b !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .breadcrumb-item a {
+  color: #9ca3af !important;
+}
+
+body.dark-mode .breadcrumb-item.active {
+  color: #f1f5f9 !important;
+}
+
+body.dark-mode .dropdown-menu {
+  background-color: #1e293b;
+}
+
+body.dark-mode .dropdown-item {
+  color: #e2e8f0;
+}
+
+body.dark-mode .dropdown-item:hover {
+  background-color: #334155;
+}
+
+body.dark-mode .card,
+body.dark-mode .table {
+  background-color: #1e293b !important;
+  color: #f1f5f9 !important;
+}
+
+body.dark-mode .form-control,
+body.dark-mode .form-select {
+  background-color: #0f172a !important;
+  border-color: #334155 !important;
+  color: #f9fafb !important;
+}
+
+body.dark-mode .btn {
+  color: #f9fafb !important;
+}
+
+@media (max-width: 768px) {
+  .breadcrumb {
+    font-size: 13px;
+  }
+}
+
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 991.98px) {
+  .sidebar {
+    display: none;
+  }
+
+  main {
+    margin-left: 0;
+  }
+}

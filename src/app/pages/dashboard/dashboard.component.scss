@@ -1,0 +1,18 @@
+h6 { font-weight: 700; }
+i{
+      background-color: #4771a4;
+    padding: 5px 10px;
+    color: white;
+    font-size: x-large;
+    border-radius: 5px;
+}
+.Charts{
+  height: 400px;
+  .Recent{
+    height: 100%;
+    overflow: hidden;
+  }
+}
+@media (max-width: 575.98px) {
+  .table-responsive { border-radius: .8rem; }
+}

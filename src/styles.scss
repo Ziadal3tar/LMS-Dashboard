@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'bootstrap/scss/bootstrap';
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Merienda:wght@300..900&display=swap');
+:root {
+  --bg: #f9fafb;
+  --sidebar: #0f172a; // slate-900
+  --card-radius: 14px;
+}
+
+html, body { height: 100%; }
+body { background: var(--bg); }
+
+.card-soft {
+  border: 0;
+  border-radius: var(--card-radius);
+  box-shadow: 0 6px 16px rgba(0,0,0,.06);
+}
+
+.badge-soft {
+  padding: .45rem .6rem;
+  border-radius: 999px;
+}
+
+.table-nowrap td, .table-nowrap th { white-space: nowrap; }

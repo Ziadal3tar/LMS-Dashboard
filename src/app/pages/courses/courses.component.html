@@ -1,0 +1,112 @@
+<div class="container-fluid">
+  <!-- Header -->
+  <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+    <h4 class="fw-bold mb-3 mb-md-0">Courses Management</h4>
+
+    <div class="d-flex flex-wrap gap-2">
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Search courses..."
+             class="form-control form-control-sm" style="width: 220px;">
+      <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#courseModal"
+              (click)="openAddModal()">
+        <i class="bi bi-plus-lg me-1"></i> Add Course
+      </button>
+    </div>
+  </div>
+
+  <!-- Courses Table -->
+  <div class="card card-soft p-3">
+    <div class="table-responsive">
+      <table class="table align-middle table-hover">
+        <thead class="table-light">
+          <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Lessons</th>
+            <th>Status</th>
+            <th>Created Date</th>
+            <th class="text-end">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let course of filteredCourses; let i = index">
+            <td>{{ course.title }}</td>
+            <td>{{ course.category }}</td>
+            <td>{{ course.lessons }}</td>
+            <td>
+              <span class="badge"
+                    [class.bg-success]="course.status==='Published'"
+                    [class.bg-secondary]="course.status==='Draft'">
+                {{ course.status }}
+              </span>
+            </td>
+            <td>{{ course.date }}</td>
+            <td class="text-end">
+              <button class="btn btn-outline-primary btn-sm me-1" data-bs-toggle="modal"
+                      data-bs-target="#courseModal" (click)="openEditModal(i)">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn btn-outline-danger btn-sm" (click)="deleteCourse(i)">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+
+          <tr *ngIf="filteredCourses.length === 0">
+            <td colspan="6" class="text-center text-muted py-3">
+              No courses found.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Add/Edit Course Modal -->
+<div class="modal fade" id="courseModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ isEditing ? 'Edit Course' : 'Add Course' }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label">Title</label>
+          <input type="text" class="form-control" [(ngModel)]="newCourse.title">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Category</label>
+          <input type="text" class="form-control" [(ngModel)]="newCourse.category">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Number of Lessons</label>
+          <input type="number" class="form-control" [(ngModel)]="newCourse.lessons">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Status</label>
+          <select class="form-select" [(ngModel)]="newCourse.status">
+            <option value="Published">Published</option>
+            <option value="Draft">Draft</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Created Date</label>
+          <input type="date" class="form-control" [(ngModel)]="newCourse.date">
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary" (click)="saveCourse()">
+          {{ isEditing ? 'Save Changes' : 'Add Course' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
