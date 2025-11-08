@@ -29,7 +29,13 @@ body.dark-mode {
   --table-hover: #334155;
   --select-bg: #0f172a;
 }
+h4, p, small,span,.text-muted{
+      color: var(--text-color) !important;
 
+}
+.card {
+  background-color: var(--card-bg) !important;
+}
 /* Smooth theme transition */
 body, .card, .topbar, .sidebar, main {
   transition: background-color 0.4s ease, color 0.3s ease;

@@ -1,0 +1,140 @@
+<div class="container-fluid">
+  <!-- Header -->
+  <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+    <h4 class="fw-bold mb-3 mb-md-0">Instructors Management</h4>
+
+    <div class="d-flex flex-wrap gap-2">
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Search instructors..."
+             class="form-control form-control-sm" style="width: 220px;">
+      <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#instructorModal"
+              (click)="openAddModal()">
+        <i class="bi bi-plus-lg me-1"></i> Add Instructor
+      </button>
+    </div>
+  </div>
+
+  <!-- Instructors Table -->
+  <div class="card card-soft p-3">
+    <div class="table-responsive">
+      <table class="table align-middle table-hover">
+        <thead>
+          <tr>
+            <th>Instructor</th>
+            <th>Email</th>
+            <th>Courses</th>
+            <th>Students</th>
+            <th>Status</th>
+            <th>Joined</th>
+            <th class="text-end">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let instructor of filteredInstructors; let i = index">
+            <td>
+  <div class="d-flex align-items-center gap-2">
+    <img [src]="instructor.avatar" alt="Avatar" class="avatar-sm rounded-circle">
+    <a [routerLink]="['/instructors', instructor.name]" class="fw-semibold text-decoration-none instructor-link">
+      {{ instructor.name }}
+    </a>
+  </div>
+</td>
+            <td>{{ instructor.email }}</td>
+            <td>{{ instructor.courses }}</td>
+            <td>{{ instructor.students }}</td>
+            <td>
+              <span class="badge"
+                    [class.bg-success]="instructor.status === 'Active'"
+                    [class.bg-secondary]="instructor.status === 'Inactive'">
+                {{ instructor.status }}
+              </span>
+            </td>
+            <td>{{ instructor.joined }}</td>
+            <td class="text-end">
+              <button class="btn btn-outline-primary btn-sm me-1" data-bs-toggle="modal"
+                      data-bs-target="#instructorModal" (click)="openEditModal(i)">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn btn-outline-danger btn-sm" (click)="deleteInstructor(i)">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+
+          <tr *ngIf="filteredInstructors.length === 0">
+            <td colspan="7" class="text-center text-muted py-3">
+              No instructors found.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Add/Edit Instructor Modal -->
+<div class="modal fade" id="instructorModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ isEditing ? 'Edit Instructor' : 'Add Instructor' }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-control" [(ngModel)]="newInstructor.name">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" [(ngModel)]="newInstructor.email">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Courses</label>
+            <input type="number" class="form-control" [(ngModel)]="newInstructor.courses">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Students</label>
+            <input type="number" class="form-control" [(ngModel)]="newInstructor.students">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Status</label>
+            <select class="form-select" [(ngModel)]="newInstructor.status">
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Joined Date</label>
+            <input type="date" class="form-control" [(ngModel)]="newInstructor.joined">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Upload Avatar</label>
+            <input type="file" class="form-control" accept="image/*" (change)="onAvatarSelected($event)">
+          </div>
+
+          <div class="col-12" *ngIf="avatarPreview">
+            <label class="form-label fw-semibold">Preview:</label>
+            <div class="text-center">
+              <img [src]="avatarPreview" class="avatar-preview rounded-circle shadow-sm">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary" (click)="saveInstructor()">
+          {{ isEditing ? 'Save Changes' : 'Add Instructor' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

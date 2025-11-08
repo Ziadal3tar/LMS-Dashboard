@@ -1,0 +1,138 @@
+<div class="container-fluid instructor-profile-page">
+  <!-- Back Button -->
+  <a routerLink="/instructors" class="btn btn-link back-btn mb-3">
+    <i class="bi bi-arrow-left"></i> Back to Instructors
+  </a>
+
+  <!-- Header -->
+  <div class="card profile-header text-center text-md-start mb-4">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between gap-3">
+      <div class="d-flex align-items-center gap-3 flex-wrap justify-content-center">
+        <img [src]="instructor.avatar" alt="Avatar" class="profile-avatar rounded-circle shadow">
+        <div>
+          <h3 class="fw-bold mb-1">{{ instructor.name }}</h3>
+          <p class="mb-1 text-muted">{{ instructor.email }}</p>
+          <span class="badge"
+                [class.bg-success]="instructor.status === 'Active'"
+                [class.bg-secondary]="instructor.status === 'Inactive'">
+            {{ instructor.status }}
+          </span>
+        </div>
+      </div>
+
+      <div class="text-center text-md-end">
+        <p class="mb-1"><strong>Joined:</strong> {{ instructor.joined }}</p>
+        <p class="mb-2 rating"><i class="bi bi-star-fill text-warning"></i> {{ instructor.rating }}</p>
+        <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-end">
+          <button class="btn btn-outline-primary btn-sm">
+            <i class="bi bi-person-badge"></i> View Full Profile
+          </button>
+          <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#messageModal">
+            <i class="bi bi-envelope"></i> Send Message
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <div class="card card-soft p-3 mb-4 fade-in">
+    <h5 class="fw-bold mb-2">About {{ instructor.name }}</h5>
+    <p class="text-muted mb-0">
+      {{ instructor.bio || "This instructor specializes in modern web technologies and has helped over 300 students master Angular, Node.js, and design fundamentals." }}
+    </p>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="row g-3 mb-4 fade-in">
+    <div class="col-md-4 col-sm-6" *ngFor="let stat of stats">
+      <div class="stat-card d-flex align-items-center gap-3 p-3">
+        <div class="icon" [class]="stat.iconClass"><i [class]="stat.icon"></i></div>
+        <div>
+          <h6 class="mb-1">{{ stat.label }}</h6>
+          <h4 class="fw-bold mb-0">{{ stat.value }}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Courses Table -->
+  <div class="card-soft p-3 mb-4 fade-in">
+    <h5 class="fw-bold mb-3">Courses by {{ instructor.name }}</h5>
+    <div class="table-responsive">
+      <table class="table align-middle">
+        <thead>
+          <tr>
+            <th>Course Title</th>
+            <th>Students</th>
+            <th>Date Created</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let course of courses">
+            <td>{{ course.title }}</td>
+            <td>{{ course.students }}</td>
+            <td>{{ course.date }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Teaching Activity Chart -->
+  <div class="card card-soft p-3 mb-4 fade-in">
+    <h5 class="fw-bold mb-3">Teaching Activity</h5>
+    <canvas id="activityChart" height="150"></canvas>
+  </div>
+
+  <!-- Student Feedbacks -->
+  <div class="card card-soft p-3 mb-4 fade-in">
+    <h5 class="fw-bold mb-3">Student Feedback</h5>
+    <div class="d-flex flex-wrap gap-3">
+      <div class="feedback p-3 rounded-3 shadow-sm" *ngFor="let f of feedbacks">
+        <p class="mb-1">“{{ f.text }}”</p>
+        <small class="text-muted">— {{ f.name }}</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Activity Log -->
+  <div class="card-soft p-3 fade-in">
+    <h5 class="fw-bold mb-3">Recent Activity</h5>
+    <div *ngFor="let act of activities" class="activity-item border-bottom py-2">
+      <div class="d-flex align-items-center gap-2">
+        <i class="bi text-primary" [ngClass]="act.icon"></i>
+        <span>{{ act.text }}</span>
+      </div>
+      <small>{{ act.time }}</small>
+    </div>
+  </div>
+
+  <!-- Message Modal -->
+  <div class="modal fade" id="messageModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg">
+        <div class="modal-header">
+          <h5 class="modal-title">Send Message to {{ instructor.name }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Subject</label>
+            <input type="text" class="form-control" [(ngModel)]="messageSubject" placeholder="Enter subject...">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Message</label>
+            <textarea class="form-control" rows="4" [(ngModel)]="messageBody" placeholder="Write your message..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn btn-primary" (click)="sendMessage()">
+            <i class="bi bi-send"></i> Send
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

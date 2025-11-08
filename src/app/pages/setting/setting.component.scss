@@ -1,0 +1,80 @@
+.settings-page {
+  h4, h5, label {
+    color: var(--text-color);
+  }
+}
+
+/* === Cards === */
+.card-soft {
+  background-color: var(--card-bg);
+  border-radius: 14px;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  }
+}
+
+/* === Accent Color Circles === */
+.color-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 0 0 2px var(--card-bg);
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+/* === Switch === */
+.form-check-input {
+  cursor: pointer;
+  width: 50px;
+  height: 25px;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .settings-page {
+    padding: 0.75rem;
+
+    h4 {
+      text-align: center;
+      font-size: 1.2rem;
+    }
+
+    .card-soft {
+      padding: 1rem;
+    }
+
+    .color-circle {
+      width: 28px;
+      height: 28px;
+    }
+
+    .btn {
+      font-size: 0.9rem;
+      padding: 0.5rem 0.75rem;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .settings-page {
+    padding: 0.5rem;
+
+    h4 {
+      font-size: 1.05rem;
+    }
+
+    .form-check-label {
+      font-size: 0.9rem;
+    }
+  }
+}

@@ -24,12 +24,9 @@ export class AdminLayoutComponent {
 
     this.router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe((event: any) => {
       const url = event.urlAfterRedirects;
-      if (url.includes('courses')) this.pageTitle = 'Courses';
-      else if (url.includes('lessons')) this.pageTitle = 'Lessons';
-      else if (url.includes('quizzes')) this.pageTitle = 'Quizzes';
-      else if (url.includes('students')) this.pageTitle = 'Students';
-      else if (url.includes('instructors')) this.pageTitle = 'Instructors';
-      else this.pageTitle = 'Dashboard';
+      console.log(url);
+this.pageTitle = url.split('/')[1]
+  ?.charAt(0).toUpperCase() + url.split('/')[1]?.slice(1);
     });
   }
 
