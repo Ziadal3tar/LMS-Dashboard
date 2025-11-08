@@ -20,6 +20,8 @@ export class AdminLayoutComponent {
   };
 
   constructor(private router: Router) {
+
+
     this.router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe((event: any) => {
       const url = event.urlAfterRedirects;
       if (url.includes('courses')) this.pageTitle = 'Courses';
@@ -31,8 +33,23 @@ export class AdminLayoutComponent {
     });
   }
 
-  toggleTheme() {
-    this.isDarkMode = !this.isDarkMode;
-    document.body.classList.toggle('dark-mode', this.isDarkMode);
+ngOnInit() {
+  // ✅ استرجاع آخر وضع استخدمه المستخدم
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    this.isDarkMode = true;
+    document.body.classList.add('dark-mode');
   }
+}
+toggleTheme() {
+  this.isDarkMode = !this.isDarkMode;
+
+  if (this.isDarkMode) {
+    document.body.classList.add('dark-mode');
+    localStorage.setItem('theme', 'dark');
+  } else {
+    document.body.classList.remove('dark-mode');
+    localStorage.setItem('theme', 'light');
+  }
+}
 }

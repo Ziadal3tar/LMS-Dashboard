@@ -1,52 +1,215 @@
+/* ========== CARD STYLE ========== */
+h4{
+  color: var(--text-color);
+
+}
 .card-soft {
-  border: none;
-  border-radius: 14px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  }
 }
 
+/* ========== TABLE STYLE (نفس جميع الصفحات) ========== */
 .table {
+  background-color: var(--table-bg);
+  color: var(--text-color);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+
   th {
     font-weight: 600;
-    color: #374151;
+    color: var(--text-strong);
+    white-space: nowrap;
+    background-color: var(--table-bg);
   }
 
   td {
     vertical-align: middle;
+    white-space: nowrap;
+    background-color: var(--table-bg);
+    color: var(--text-color);
+  }
+
+  tbody tr:hover {
+    background-color: var(--table-hover);
   }
 }
 
+/* ✅ اجعل الجدول قابل للتمرير أفقياً */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 10px;
+}
+
+/* ========== BUTTONS ========== */
 .btn-outline-primary,
 .btn-outline-danger {
   border-width: 1.5px;
-  transition: 0.2s;
+  transition: 0.25s ease;
 }
 
-@media (max-width: 768px) {
+.btn-outline-primary:hover {
+  background-color: var(--icon-bg);
+  color: #fff;
+}
+
+.btn-outline-danger:hover {
+  background-color: #ef4444;
+  color: #fff;
+}
+
+/* ========== VIDEO PREVIEW ========== */
+.video-preview {
+  background-color: var(--select-bg);
+  border: 2px dashed var(--card-border);
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--icon-bg);
+    background-color: var(--table-hover);
+  }
+
+  video {
+    width: 100%;
+    max-height: 240px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  small {
+    color: var(--text-color);
+    opacity: 0.8;
+    display: block;
+    margin-top: 0.4rem;
+  }
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* الأجهزة المتوسطة (تابلت وما دون) */
+@media (max-width: 992px) {
+  .d-flex.flex-wrap {
+    flex-direction: column;
+    align-items: stretch !important;
+    gap: 0.75rem;
+  }
+
+  .form-control-sm,
+  .btn-sm {
+    width: 100% !important;
+  }
+
+  .table {
+    font-size: 14px;
+  }
+}
+
+/* الهواتف الصغيرة جدًا (<=576px) */
+@media (max-width: 576px) {
+  .container-fluid {
+    padding: 0.75rem;
+  }
+
+  h4 {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+
   .table {
     font-size: 13px;
   }
 
-  .form-control-sm {
-    width: 100% !important;
+  .table-responsive {
+    margin-top: 0.5rem;
   }
 
-  .d-flex.flex-wrap {
-    flex-direction: column;
-    align-items: stretch !important;
+  .btn-sm {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.85rem;
+  }
+
+  .modal-dialog {
+    margin: 0.75rem;
+  }
+
+  .modal-content {
+    border-radius: 10px;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+  }
+
+  .modal-body {
+    padding: 0.75rem 1rem;
+  }
+
+  label.form-label {
+    font-size: 0.9rem;
+    color: var(--text-strong);
+  }
+
+  input.form-control,
+  select.form-select {
+    font-size: 0.9rem;
+    background-color: var(--select-bg);
+    color: var(--text-color);
+    border-color: var(--card-border);
+  }
+
+  /* ✅ الجدول في الشاشات الصغيرة جدًا يكون قابل للتمرير */
+  table.table {
+    min-width: 600px;
+  }
+
+  /* ✅ تحسين video preview */
+  .video-preview {
+    padding: 8px;
+    border-radius: 10px;
+
+    video {
+      max-height: 180px;
+    }
+
+    small {
+      font-size: 0.8rem;
+    }
   }
 }
-.video-preview {
-  background-color: #f9fafb;
-  border: 2px dashed #d1d5db;
-  border-radius: 12px;
-  padding: 10px;
-  transition: all 0.3s ease;
+
+/* أصغر الهواتف (<=400px) */
+@media (max-width: 400px) {
+  h4 {
+    font-size: 1rem;
+  }
+
+  .table {
+    font-size: 12px;
+  }
+
+  .btn-sm {
+    font-size: 0.8rem;
+  }
+
+  .video-preview video {
+    max-height: 150px;
+  }
 }
 
-.video-preview:hover {
-  border-color: #3b82f6;
-}
-
-.video-preview video {
-  border-radius: 8px;
+/* ========== TRANSITIONS ========== */
+.card-soft,
+.table,
+.video-preview,
+.form-select {
+  transition: background-color 0.4s ease, color 0.3s ease, border-color 0.3s ease;
 }

@@ -1,132 +1,182 @@
+/* ===================== 🌗 THEME-INTEGRATED LAYOUT ===================== */
+
+/* ✅ روابط القائمة */
+.sidebar .nav-link {
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.3s, background-color 0.3s;
+}
+body:not(.dark-mode) .sidebar .nav-link {
+  color: #475569;
+}
+
+.nav-link.active,
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff !important;
+}
+body:not(.dark-mode) .nav-link.active,
+body:not(.dark-mode) .nav-link:hover {
+  background: #f1f5f9;
+  color: #1e293b !important;
+}
+
+/* ===================== MAIN STRUCTURE ===================== */
+
 .app {
   background: var(--bg);
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-/* ========== SIDEBAR ========== */
+/* ✅ Sidebar */
 .sidebar {
   width: 300px;
   background: var(--sidebar);
-  position: fixed; /* ✅ يجعلها ثابتة */
+  position: fixed;
   top: 0;
   left: 0;
-  height: 100vh; /* تملأ الشاشة بالكامل */
-  overflow-y: auto; /* لو القائمة طويلة */
-  z-index: 100; /* فوق المحتوى */
-}
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 100;
+  color: #f1f5f9;
+  transition: background-color 0.4s ease;
 
-.sidebar::-webkit-scrollbar {
-  width: 6px;
-}
-.sidebar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
-}
-
-/* المحتوى الرئيسي */
-main {
-  margin-left: 300px; /* يترك مساحة للـ sidebar */
-  flex-grow: 1;
-}
-
-/* روابط القائمة */
-.nav-link {
-  padding: 0.6rem 0.8rem;
-  border-radius: 0.6rem;
-  transition: 0.3s;
-  &.active,
-  &:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff !important;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
   }
 }
 
-/* ========== TOPBAR ========== */
-/* ========== TOPBAR ========== */
+/* ✅ Main Content */
+main {
+  margin-left: 300px;
+  flex-grow: 1;
+  min-width: 0;
+  background-color: var(--bg);
+  transition: background-color 0.4s ease;
+}
+
+/* ===================== TOPBAR ===================== */
 .topbar {
   z-index: 50;
   position: sticky;
   top: 0;
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
+  background-color: var(--table-bg);
+  border-bottom: 1px solid var(--card-border);
+  color: var(--text-color);
 }
 
 .topbar .breadcrumb {
   background: transparent;
   font-size: 14px;
+  color: var(--text-color);
+}
+
+.topbar .breadcrumb-item a {
+  color: var(--text-color);
+}
+.topbar .breadcrumb-item.active {
+  color: var(--text-strong);
+}
+
+/* ===================== DROPDOWNS ===================== */
+.dropdown{
+  a{
+  color: var(--text-color);
+
+  }
 }
 
 .dropdown-menu {
+  background-color: var(--card-bg);
   border-radius: 12px;
-  border: none;
+  border: 1px solid var(--card-border);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .dropdown-item {
   font-size: 14px;
   display: flex;
   align-items: center;
-}
+  transition: background-color 0.2s;
+  color: var(--text-color);
 
-.dropdown-item i {
-  font-size: 1rem;
-}
+  i {
+    font-size: 1rem;
+  }
 
-/* ========== DARK MODE ========== */
-body.dark-mode {
-  background-color: #0f172a !important;
-  color: #f9fafb !important;
-}
-
-body.dark-mode .topbar {
-  background-color: #1e293b !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-body.dark-mode .breadcrumb-item a {
-  color: #9ca3af !important;
-}
-
-body.dark-mode .breadcrumb-item.active {
-  color: #f1f5f9 !important;
-}
-
-body.dark-mode .dropdown-menu {
-  background-color: #1e293b;
-}
-
-body.dark-mode .dropdown-item {
-  color: #e2e8f0;
-}
-
-body.dark-mode .dropdown-item:hover {
-  background-color: #334155;
-}
-
-body.dark-mode .card,
-body.dark-mode .table {
-  background-color: #1e293b !important;
-  color: #f1f5f9 !important;
-}
-
-body.dark-mode .form-control,
-body.dark-mode .form-select {
-  background-color: #0f172a !important;
-  border-color: #334155 !important;
-  color: #f9fafb !important;
-}
-
-body.dark-mode .btn {
-  color: #f9fafb !important;
-}
-
-@media (max-width: 768px) {
-  .breadcrumb {
-    font-size: 13px;
+  &:hover {
+    background-color: var(--table-hover);
   }
 }
 
+/* ===================== MOBILE SIDEBAR ===================== */
+.mobile-sidebar {
+  width: 260px;
+  background-color: var(--sidebar);
+  color: var(--text-color);
+  transition: all 0.3s ease;
 
-/* ========== RESPONSIVE ========== */
+  .offcanvas-header {
+    padding: 1rem 1.25rem;
+    background-color: var(--table-bg);
+  }
+
+  .offcanvas-title {
+    font-size: 1.1rem;
+    color: var(--text-color);
+  }
+
+  .btn-close {
+    filter: invert(1);
+    opacity: 0.7;
+    transition: 0.2s;
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .nav {
+    padding: 1rem 0;
+
+    .nav-link {
+      padding: 0.75rem 1.25rem;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      transition: all 0.2s ease;
+      border-left: 4px solid transparent;
+
+      i {
+        font-size: 1.1rem;
+      }
+
+      &:hover {
+        background-color: var(--table-hover);
+      }
+
+      &.active {
+        background-color: #2563eb;
+        color: #fff;
+        border-left-color: #3b82f6;
+      }
+    }
+  }
+
+  .offcanvas-footer {
+    background-color: var(--table-bg);
+  }
+}
+
+/* ===================== RESPONSIVENESS ===================== */
+
 @media (max-width: 991.98px) {
   .sidebar {
     display: none;
@@ -135,4 +185,53 @@ body.dark-mode .btn {
   main {
     margin-left: 0;
   }
+}
+
+@media (max-width: 768px) {
+  .breadcrumb {
+    font-size: 13px;
+  }
+
+  .topbar {
+    padding: 0.5rem 1rem;
+  }
+
+  .topbar nav {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar .btn,
+  .topbar i {
+    font-size: 16px;
+  }
+
+  .offcanvas-body a {
+    font-size: 15px;
+    padding: 0.4rem 0;
+  }
+
+  .offcanvas-header h5 {
+    font-size: 16px;
+  }
+
+  .dropdown-menu {
+    min-width: 150px;
+  }
+
+  .content {
+    padding: 0.75rem !important;
+  }
+}
+
+/* ===================== TRANSITION ===================== */
+body,
+.card,
+.sidebar,
+.topbar,
+.offcanvas,
+.dropdown-menu,
+main {
+  transition: background-color 0.4s ease, color 0.3s ease, border-color 0.3s ease;
 }

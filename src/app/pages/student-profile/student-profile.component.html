@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <a routerLink="/students" class="btn btn-link text-decoration-none mb-3">
+  <a routerLink="/students" class="btn btn-link text-muteddecoration-none mb-3">
     <i class="bi bi-arrow-left"></i> Back to Students
   </a>
 
@@ -7,7 +7,7 @@
     <div class="d-flex flex-wrap align-items-center justify-content-between">
       <div>
         <h4 class="fw-bold">{{ student.name }}</h4>
-        <p class="mb-1 text-muted">{{ student.email }}</p>
+        <p class="mb-1 ">{{ student.email }}</p>
         <span class="badge"
               [class.bg-success]="student.status === 'Active'"
               [class.bg-danger]="student.status === 'Suspended'">
@@ -15,7 +15,7 @@
         </span>
       </div>
       <div>
-        <p class="mb-0 text-muted small">Joined: {{ student.joined }}</p>
+        <p class="mb-0 text-mutedmuted small">Joined: {{ student.joined }}</p>
       </div>
     </div>
   </div>
@@ -27,13 +27,13 @@
     <div *ngFor="let course of student.courses" class="border rounded-3 p-3 mb-3">
       <div class="d-flex justify-content-between align-items-center mb-2">
         <span class="fw-semibold">{{ course.title }}</span>
-        <span class="text-muted small">{{ course.progress }}% complete</span>
+        <span class="text-mutedmuted small">{{ course.progress }}% complete</span>
       </div>
       <div class="progress" style="height: 8px;">
         <div class="progress-bar bg-primary" [style.width.%]="course.progress"></div>
       </div>
-      <div class="mt-2 text-muted small">
-        Grade: <span class="fw-semibold text-dark">{{ course.grade }}%</span>
+      <div class="mt-2 text-mutedmuted small">
+        Grade: <span class="fw-semibold text-muteddark">{{ course.grade }}%</span>
       </div>
     </div>
   </div>
@@ -57,17 +57,17 @@
   <div *ngIf="filteredActivity?.length > 0; else noActivity">
     <div *ngFor="let log of filteredActivity" class="activity-item border-bottom py-2 d-flex justify-content-between">
       <div class="d-flex align-items-center">
-        <i *ngIf="log.type === 'lesson'" class="bi bi-play-btn text-primary me-2"></i>
-        <i *ngIf="log.type === 'quiz'" class="bi bi-patch-question text-warning me-2"></i>
-        <i *ngIf="log.type === 'course'" class="bi bi-journal-bookmark text-success me-2"></i>
+        <i *ngIf="log.type === 'lesson'" class="bi bi-play-btn text-mutedprimary me-2"></i>
+        <i *ngIf="log.type === 'quiz'" class="bi bi-patch-question text-mutedwarning me-2"></i>
+        <i *ngIf="log.type === 'course'" class="bi bi-journal-bookmark text-mutedsuccess me-2"></i>
         <span>{{ log.action }}</span>
       </div>
-      <small class="text-muted">{{ log.date }}</small>
+      <small class="text-mutedmuted">{{ log.date }}</small>
     </div>
   </div>
 
   <ng-template #noActivity>
-    <p class="text-muted text-center mb-0 py-3">No activities found for this filter.</p>
+    <p class="text-mutedmuted text-mutedcenter mb-0 py-3">No activities found for this filter.</p>
   </ng-template>
 </div>
 

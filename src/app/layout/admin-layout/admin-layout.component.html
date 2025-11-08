@@ -22,49 +22,63 @@
     <div class="mt-auto small text-white-50">v1.0.0</div>
   </aside>
 
-  <!-- Mobile topbar + offcanvas -->
-  <header class="w-100 d-lg-none bg-white px-3 py-2 border-bottom sticky-top">
-    <div class="d-flex align-items-center justify-content-between">
-      <button class="btn btn-outline-secondary" data-bs-toggle="offcanvas" data-bs-target="#mSidebar">
-        <i class="bi bi-list"></i>
-      </button>
-      <strong>EduLMS Admin</strong>
-      <div class="d-flex align-items-center gap-3">
-        <i class="bi bi-bell"></i>
-        <i class="bi bi-person-circle fs-5"></i>
-      </div>
-    </div>
-  </header>
 
-  <div class="offcanvas offcanvas-start" id="mSidebar">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title">Menu</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-    </div>
-    <div class="offcanvas-body">
-      <a routerLink="/" data-bs-dismiss="offcanvas" class="d-block mb-2">Dashboard</a>
-      <a routerLink="/courses" data-bs-dismiss="offcanvas" class="d-block mb-2">Courses</a>
-      <a routerLink="/lessons" data-bs-dismiss="offcanvas" class="d-block mb-2">Lessons</a>
-      <a routerLink="/quizzes" data-bs-dismiss="offcanvas" class="d-block mb-2">Quizzes</a>
-      <a routerLink="/students" data-bs-dismiss="offcanvas" class="d-block mb-2">Students</a>
-      <a routerLink="/instructors" data-bs-dismiss="offcanvas" class="d-block mb-2">Instructors</a>
-      <a routerLink="/results" data-bs-dismiss="offcanvas" class="d-block mb-2">Results</a>
-      <a routerLink="/settings" data-bs-dismiss="offcanvas" class="d-block mb-2">Settings</a>
-    </div>
+
+  <div class="offcanvas offcanvas-start mobile-sidebar" tabindex="-1" id="mSidebar">
+  <div class="offcanvas-header border-bottom">
+    <h5 class="offcanvas-title fw-bold text-primary d-flex align-items-center gap-2">
+      <i class="bi bi-mortarboard-fill"></i> EduLMS
+    </h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
   </div>
+
+  <div class="offcanvas-body p-0">
+    <nav class="nav flex-column">
+      <a routerLink="/" data-bs-dismiss="offcanvas" class="nav-link">
+        <i class="bi bi-speedometer2 me-2"></i> Dashboard
+      </a>
+      <a routerLink="/courses" data-bs-dismiss="offcanvas" class="nav-link">
+        <i class="bi bi-journal-text me-2"></i> Courses
+      </a>
+      <a routerLink="/lessons" data-bs-dismiss="offcanvas" class="nav-link">
+        <i class="bi bi-play-btn me-2"></i> Lessons
+      </a>
+      <a routerLink="/quizzes" data-bs-dismiss="offcanvas" class="nav-link">
+        <i class="bi bi-question-circle me-2"></i> Quizzes
+      </a>
+      <a routerLink="/students" data-bs-dismiss="offcanvas" class="nav-link">
+        <i class="bi bi-people me-2"></i> Students
+      </a>
+      <a routerLink="/instructors" data-bs-dismiss="offcanvas" class="nav-link">
+        <i class="bi bi-person-badge me-2"></i> Instructors
+      </a>
+      <a routerLink="/results" data-bs-dismiss="offcanvas" class="nav-link">
+        <i class="bi bi-bar-chart-line me-2"></i> Results
+      </a>
+      <a routerLink="/settings" data-bs-dismiss="offcanvas" class="nav-link">
+        <i class="bi bi-gear me-2"></i> Settings
+      </a>
+    </nav>
+  </div>
+
+  <div class="offcanvas-footer border-top p-3 small text-center text-muted">
+    v1.0.0 © EduLMS
+  </div>
+</div>
+
 
   <!-- Main -->
   <main class="flex-grow-1">
-<header class="topbar d-flex align-items-center justify-content-between px-3 px-md-4 py-3 bg-white border-bottom sticky-top">
+<header class="topbar d-flex align-items-center justify-content-between px-3 px-md-4 py-3  border-bottom sticky-top">
   <!-- Breadcrumb -->
   <div class="d-flex align-items-center gap-2 flex-wrap">
     <i class="bi bi-list d-lg-none fs-4" data-bs-toggle="offcanvas" data-bs-target="#mSidebar"></i>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb mb-0">
         <li class="breadcrumb-item">
-          <a routerLink="/" class="text-decoration-none text-muted">Home</a>
+          <a routerLink="/" class="text-decoration-none ">Home</a>
         </li>
-        <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">
+        <li class="breadcrumb-item active fw-semibold" aria-current="page">
           {{ pageTitle }}
         </li>
       </ol>
@@ -74,7 +88,7 @@
   <!-- Right section -->
   <div class="d-flex align-items-center gap-3">
     <!-- Theme toggle -->
-    <button class="btn btn-light btn-sm border-0" (click)="toggleTheme()" title="Toggle theme">
+    <button class="btn btn-sm border-0 moodsBtn" (click)="toggleTheme()" title="Toggle theme">
       <i [class]="isDarkMode ? 'bi bi-sun-fill text-warning' : 'bi bi-moon-stars-fill text-secondary'"></i>
     </button>
 
@@ -82,7 +96,7 @@
     <div class="dropdown">
       <a class="d-flex align-items-center text-decoration-none" href="#" role="button" data-bs-toggle="dropdown">
         <img [src]="user.avatar" class="rounded-circle me-2" width="36" height="36" alt="user">
-        <span class="fw-semibold text-dark d-none d-md-inline">{{ user.name }}</span>
+        <span class="fw-semibold d-none d-md-inline">{{ user.name }}</span>
         <i class="bi bi-caret-down-fill ms-1 text-muted small"></i>
       </a>
       <ul class="dropdown-menu dropdown-menu-end shadow-sm">

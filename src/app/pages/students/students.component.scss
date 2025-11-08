@@ -1,37 +1,201 @@
+/* ========== CARD STYLE ========== */
 .card-soft {
-  border: none;
+  border: 1px solid var(--card-border);
   border-radius: 14px;
+  background-color: var(--card-bg);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  }
 }
 
+/* ========== TABLE STYLE ========== */
 .table {
+  background-color: var(--table-bg);
+  color: var(--text-color);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+
   th {
     font-weight: 600;
-    color: #374151;
+    color: var(--text-strong);
+    white-space: nowrap;
+    background-color: var(--table-bg);
   }
 
   td {
     vertical-align: middle;
+    white-space: nowrap;
+    background-color: var(--table-bg);
+    color: var(--text-color);
+  }
+
+  tbody tr:hover {
+    background-color: var(--table-hover);
   }
 }
 
+/* ✅ اجعل الجدول قابل للتمرير في الهواتف */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 10px;
+}
+
+/* ========== BUTTONS ========== */
 .btn-outline-primary,
 .btn-outline-danger {
   border-width: 1.5px;
   transition: 0.2s;
 }
 
-@media (max-width: 768px) {
+.btn-outline-primary:hover {
+  background-color: var(--icon-bg);
+  color: #fff;
+}
+
+.btn-outline-danger:hover {
+  background-color: #ef4444;
+  color: #fff;
+}
+
+/* ========== HEADER (Filters + Add Button) ========== */
+.d-flex.flex-wrap.justify-content-between {
+  gap: 1rem;
+}
+
+.d-flex.flex-wrap.gap-2 {
+  gap: 0.6rem;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* الأجهزة المتوسطة (تابلت وأقل) */
+@media (max-width: 992px) {
+  .d-flex.flex-wrap.justify-content-between {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.8rem;
+  }
+
+  .d-flex.flex-wrap.gap-2 {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .form-control-sm,
+  .btn-sm {
+    width: 100% !important;
+  }
+
+  .table {
+    font-size: 14px;
+  }
+
+  .table-responsive {
+    margin-top: 0.5rem;
+  }
+}
+
+/* الهواتف الصغيرة جدًا (≤576px) */
+@media (max-width: 576px) {
+  .container-fluid {
+    padding: 0.75rem;
+  }
+
+  h4 {
+    font-size: 1.1rem;
+    text-align: center;
+    color: var(--heading-color);
+  }
+
+  .card-soft {
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: var(--card-bg);
+  }
+
   .table {
     font-size: 13px;
   }
 
-  .form-control-sm {
-    width: 100% !important;
+  table.table {
+    min-width: 600px; /* ✅ يمنع انكسار الأعمدة */
   }
 
-  .d-flex.flex-wrap {
-    flex-direction: column;
-    align-items: stretch !important;
+  .btn-sm {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.85rem;
   }
+
+  /* ✅ تحسين المودال */
+  .modal-dialog {
+    margin: 0.75rem;
+  }
+
+  .modal-content {
+    border-radius: 10px;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+  }
+
+  .modal-body {
+    padding: 0.75rem 1rem;
+  }
+
+  label.form-label {
+    font-size: 0.9rem;
+    color: var(--text-strong);
+  }
+
+  input.form-control,
+  select.form-select {
+    font-size: 0.9rem;
+    background-color: var(--select-bg);
+    color: var(--text-color);
+    border-color: var(--card-border);
+  }
+}
+
+/* أصغر الهواتف (≤400px) */
+@media (max-width: 400px) {
+  .container-fluid {
+    padding: 0.5rem;
+  }
+
+  h4 {
+    font-size: 1rem;
+  }
+
+  .table {
+    font-size: 12px;
+  }
+
+  .btn-sm {
+    font-size: 0.8rem;
+  }
+
+  .form-control-sm {
+    font-size: 0.85rem;
+  }
+
+  .card-soft {
+    padding: 0.8rem;
+  }
+}
+
+/* ========== TRANSITIONS ========== */
+.card-soft,
+.table,
+h4,
+input,
+select,
+.btn,
+label {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+      color: var(--text-color);
+
 }

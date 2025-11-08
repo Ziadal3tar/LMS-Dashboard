@@ -1,18 +1,90 @@
-h6 { font-weight: 700; }
-i{
-      background-color: #4771a4;
-    padding: 5px 10px;
-    color: white;
-    font-size: x-large;
-    border-radius: 5px;
-}
-.Charts{
-  height: 400px;
-  .Recent{
-    height: 100%;
-    overflow: hidden;
+.card-soft {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  transition: all 0.35s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
   }
 }
+
+i.bi {
+  background-color: var(--icon-bg);
+  padding: 6px 10px;
+  color: #fff;
+  font-size: 1.25rem;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h6, h5, span {
+  color: var(--heading-color);
+  font-weight: 600;
+}
+
+.table {
+  background-color: var(--table-bg);
+  color: var(--text-color);
+  border-radius: 10px;
+  overflow: hidden;
+
+  th {
+    color: var(--text-strong);
+    font-weight: 600;
+      background-color: var(--table-bg);
+
+  }
+
+  td {
+    color: var(--text-strong);
+    vertical-align: middle;
+      background-color: var(--table-bg);
+
+  }
+
+  tbody tr:hover {
+      background-color: var(--table-bg);
+
+  }
+}
+
+canvas {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.form-select {
+  background-color: var(--select-bg);
+  color: var(--text-color);
+  border-color: var(--card-border);
+  transition: all 0.3s ease;
+}
+
 @media (max-width: 575.98px) {
-  .table-responsive { border-radius: .8rem; }
+  .card {
+    padding: 0.6rem !important;
+  }
+
+  .container-fluid {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .row.g-3 > .col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+.card-soft,
+.table,
+h6,
+.form-select,
+i.bi {
+  transition: background-color 0.4s ease, color 0.3s ease, border-color 0.3s ease;
 }
